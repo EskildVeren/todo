@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./style.css";
+//import * as deleteIcon from "./assets/deleteIcon.svg";
+import DeleteIcon from "./DeleteIcon";
 
 type todoDay = {
   date: string;
@@ -13,6 +15,7 @@ const todos: todoDay = {
 
 function App() {
   const [strikedItems, setStrikedItems] = useState([""]);
+  const [editmode, setEditmode] = useState(false);
 
   const strikeItem = (todo: string) => {
     if (strikedItems.includes(todo)) {
@@ -28,15 +31,30 @@ function App() {
 
       {todos.items.map((todo, index) => {
         return (
-          <p
-            key={index}
-            onClick={() => strikeItem(todo)}
-            className={strikedItems.includes(todo) ? "striked" : ""}
-          >
-            {todo}
-          </p>
+          <div key={index} className="todoListItem">
+            <p
+              onClick={() => strikeItem(todo)}
+              className={
+                strikedItems.includes(todo) ? "todoText striked" : "todoText"
+              }
+            >
+              {todo}
+              <DeleteIcon width="20px" height="20px" />
+            </p>
+          </div>
         );
       })}
+
+      {editmode ? <p>Edit</p> : <></>}
+
+      <div className="bottomFill">
+        <div
+          className="enterEditModeDiv"
+          onClick={() => setEditmode(!editmode)}
+        >
+          <p className="enterEditModeText">Edit todos</p>
+        </div>
+      </div>
     </>
   );
 }
