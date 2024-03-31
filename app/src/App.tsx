@@ -30,9 +30,7 @@ function App() {
 
   return (
     <>
-      <div className="titleDiv">
-        <h1>Todo Today</h1>
-      </div>
+      <h1>Todo Today</h1>
 
       {todos.items.map((todo, index) => {
         return (
