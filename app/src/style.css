@@ -18,6 +18,10 @@ h1 {
   text-decoration: line-through;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .enterEditModeDiv {
   width: 100%;
   min-height: 5em;

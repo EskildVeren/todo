@@ -26,8 +26,6 @@ function App() {
     }
   };
 
-  const handleEditTodosClicked = () => {};
-
   return (
     <>
       <h1>Todo Today</h1>
@@ -43,12 +41,16 @@ function App() {
             >
               {todo}
             </p>
-            {editmode ? <DeleteIcon height="3em" width="3em" /> : ""}
+            {editmode ? (
+              <DeleteIcon height="3em" width="3em" className="clickable" />
+            ) : (
+              ""
+            )}
           </div>
         );
       })}
       {editmode ? (
-        <div className="todoListItem">
+        <div className="todoListItem clickable">
           <p className="todoText">Add a todo!</p>
           <AddIcon height="3em" width="3em" />
         </div>
