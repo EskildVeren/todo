@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./style.css";
 //import * as deleteIcon from "./assets/deleteIcon.svg";
 import DeleteIcon from "./DeleteIcon";
+import AddIcon from "./AddIcon";
 
 type todoDay = {
   date: string;
@@ -25,9 +26,13 @@ function App() {
     }
   };
 
+  const handleEditTodosClicked = () => {};
+
   return (
     <>
-      <h1>Todo Today</h1>
+      <div className="titleDiv">
+        <h1>Todo Today</h1>
+      </div>
 
       {todos.items.map((todo, index) => {
         return (
@@ -39,13 +44,19 @@ function App() {
               }
             >
               {todo}
-              <DeleteIcon width="20px" height="20px" />
             </p>
+            {editmode ? <DeleteIcon height="3em" width="3em" /> : ""}
           </div>
         );
       })}
-
-      {editmode ? <p>Edit</p> : <></>}
+      {editmode ? (
+        <div className="todoListItem">
+          <p className="todoText">Add a todo!</p>
+          <AddIcon height="3em" width="3em" />
+        </div>
+      ) : (
+        ""
+      )}
 
       <div className="bottomFill">
         <div
