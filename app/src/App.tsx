@@ -9,7 +9,7 @@ type todoDay = {
   items: string[];
 };
 
-const todos: todoDay = {
+const todoData: todoDay = {
   date: "today",
   items: ["Vask klær", "Ring farmor", "Fullfør inlevering", "Mat katten"],
 };
@@ -17,6 +17,16 @@ const todos: todoDay = {
 function App() {
   const [strikedItems, setStrikedItems] = useState([""]);
   const [editmode, setEditmode] = useState(false);
+  const [todos, setTodos] = useState(todoData.items);
+
+  const handleAddTodo = () => {
+    setTodos([...todos, "wooo"]);
+  };
+
+  const handleDeleteTodo = (todo: string) => {
+    //const newTodos = todos;
+    setTodos(todos.filter((item) => item != todo));
+  };
 
   const strikeItem = (todo: string) => {
     if (strikedItems.includes(todo)) {
@@ -30,7 +40,7 @@ function App() {
     <>
       <h1>Todo Today</h1>
 
-      {todos.items.map((todo, index) => {
+      {todos.map((todo, index) => {
         return (
           <div key={index} className="todoListItem">
             <p
@@ -42,7 +52,13 @@ function App() {
               {todo}
             </p>
             {editmode ? (
-              <DeleteIcon height="3em" width="3em" className="clickable" />
+              <DeleteIcon
+                height="3em"
+                width="3em"
+                className="clickable"
+                deleteFunction={() => handleDeleteTodo(todo)}
+                todoName={todo}
+              />
             ) : (
               ""
             )}
@@ -50,7 +66,7 @@ function App() {
         );
       })}
       {editmode ? (
-        <div className="todoListItem clickable">
+        <div className="todoListItem clickable" onClick={() => handleAddTodo()}>
           <p className="todoText">Add a todo!</p>
           <AddIcon height="3em" width="3em" />
         </div>

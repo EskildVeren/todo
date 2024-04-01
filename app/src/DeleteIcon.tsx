@@ -2,6 +2,8 @@ type deleteIconProps = {
   width: string;
   height: string;
   className: string;
+  deleteFunction: (index: string) => void;
+  todoName: string;
 };
 
 export default function deleteIcon(props: deleteIconProps) {
@@ -18,6 +20,7 @@ export default function deleteIcon(props: deleteIconProps) {
       strokeLinejoin="round"
       strokeMiterlimit="1.5"
       className={props.className}
+      onClick={() => props.deleteFunction(props.todoName)}
     >
       <g transform="matrix(1.03596,0,0,1.04383,-19.1939,-25.0968)">
         <path
